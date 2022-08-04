@@ -35,8 +35,25 @@ sql_command = """INSERT INTO ADMIN VALUES('000000', 'George', 'Washington', 'Pre
 sql_command = """INSERT INTO INSTRUCTOR VALUES('1', 'John', 'Hancock', 'Prof', '2000', 'BSCO', 'hancockj');"""
 #cursor.execute(sql_command)
 
-cursor.execute("ALTER TABLE INSTRUCTOR DROP PASSWORD")
-cursor.execute("ALTER TABLE INSTRUCTOR ADD PASSWORD TEXT DEFAULT '0'")
+# cursor.execute("ALTER TABLE INSTRUCTOR DROP PASSWORD")
+# cursor.execute("ALTER TABLE INSTRUCTOR ADD PASSWORD TEXT DEFAULT '0'")
+
+# cursor.execute("UPDATE ADMIN SET FIRST = 'George' WHERE FIRST = 'Geroge';")
+
+#cursor.execute("UPDATE STUDENT SET ID = '100012' WHERE ID = '10012'")
+#cursor.execute("UPDATE STUDENT_COURSE SET STUDENT_ID = '000001' WHERE STUDENT_ID = '1'")
+
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('7', 'John', 'Rambo', 'Full Prof.', '1982', 'BSCO', 'ramboj', 'BakerTeam1968');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('8', 'John', 'McClane', 'Full Prof.', '1988', 'BSEE', 'mcclanej', 'DieHard1988');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('9', 'Mike', 'Lowrey', 'Full Prof.', '1995', 'HUSS', 'lowreym', '1994Porsche911Turbo');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('10', 'Ethan', 'Hunt', 'Full Prof.', '1996', 'BSAS', 'hunte', 'CLASSIFIED');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('11', 'Kathryn', 'Railly', 'Full Prof.', '1995', 'HUSS', 'raillyk', 'TwelveMonkeys');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('12', 'Max', 'Rockatansky', 'Full Prof.', '1979', 'BSME', 'rockatanskym', 'BlackOnBlackV8');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('13', 'Millie', 'Rusk', 'Full Prof.', '2021', 'COMP', 'ruskm', 'ILoveBlueShirtGuy');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('14', 'Johnny', 'Utah', 'Full Prof.', '1991', 'BSEE', 'utahj', 'CopSurfer');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('15', 'Dominic', 'Toretto', 'Full Prof.', '2001', 'BSME', 'torettod', '1970DodgeChargerR/T');")
+cursor.execute("INSERT INTO INSTRUCTOR VALUES('16', 'Sarah', 'Connor', 'Full Prof.', '1984', 'BCOS', 'connors', 'TechNoir');")
+
 
 database.commit()
 database.close()

@@ -194,38 +194,53 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
         elif(user_choice == 3):
             admin_user = admin(first, last, id)
             print("Welcome, " + admin_user.show_first() + " " + admin_user.show_last() + "!")
-            action_choice = int(input("Choose an option:\n1. Add course\n2. Remove course\n3. Add user\n4. Remove user\n5. Add student\n6. Remove student\n7. Add instructor\n8. Remove instructor\n9. Search courses\n10. Search courses by parameter\n0. Exit\n"))
+            action_choice = int(input("Choose an option:\n1. Add course\n2. Remove course\n3. Add admin\n4. Remove admin\n5. Add student\n6. Remove student\n7. Add instructor\n8. Remove instructor\n9. Search courses\n10. Search courses by parameter\n0. Exit\n"))
             if(action_choice == 1):
                 parameters = admin_user.add_course()
                 cursor.execute("""INSERT INTO COURSE VALUES(?, ?, ?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]))
+                print("\nCourse successfully added\n")
             elif(action_choice == 2):
                 crn = admin_user.remove_course()
                 cursor.execute("""DELETE FROM COURSE WHERE CRN = ?;""", (crn,))
+                print("\nCourse successfully removed\n")
+                database.commit()
             elif(action_choice == 3):
                 parameters = admin_user.add_user()
-                cursor.execute("""INSERT INTO ADMIN VALUES(?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]))
+                cursor.execute("""INSERT INTO ADMIN VALUES(?, ?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6]))
+                print("\nAdmin successfully added\n")
+                database.commit()
             elif(action_choice == 4):
                 id = admin_user.remove_user()
                 cursor.execute("""DELETE FROM ADMIN WHERE ID = ?;""", (id,))
+                print("\nAdmin successfully removed\n")
+                database.commit()
             elif(action_choice == 5):
                 parameters = admin_user.add_student()
-                cursor.execute("""INSERT INTO STUDENT VALUES(?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]))
+                cursor.execute("""INSERT INTO STUDENT VALUES(?, ?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6]))
+                print("\nStudent successfully added\n")
+                database.commit()
             elif(action_choice == 6):
                 id = admin_user.remove_student()
                 cursor.execute("""DELETE FROM STUDENT WHERE ID = ?;""", (id,))
+                print("\nStudent successfully removed\n")
+                database.commit()
             elif(action_choice == 7):
                 parameters = admin_user.add_instuctor()
-                cursor.execute("""INSERT INTO INSTRUCTOR VALUES(?, ?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6]))
+                cursor.execute("""INSERT INTO INSTRUCTOR VALUES(?, ?, ?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]))
+                print("\nInstructor successfully added\n")
+                database.commit()
             elif(action_choice == 8):
                 id = admin_user.remove_instructor()
                 cursor.execute("""DELETE FROM INSTRUCTOR WHERE ID = ?;""", (id,))
+                print("\nInstructor successfully added\n")
+                database.commit()
             elif(action_choice == 9):
                 cursor.execute(admin_user.search_courses())
                 query_result = cursor.fetchall()
                 print(query_result)
             elif(action_choice == 10):
                 parameters = admin_user.search_by_parameters()
-                print(cursor.execute("""SELECT * FROM COURSE WHERE (CRN = ? AND TITLE = ? AND DEPARTMENT = ? AND TIME = ? AND DAYS = ? AND SEMESTER = ? AND YEAR = ? AND CREDITS = ?)""" , (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7])))
+                print(cursor.execute("""SELECT * FROM COURSE WHERE (CRN = ? AND TITLE = ? AND DEPARTMENT = ? AND TIME = ? AND DAYS = ? AND SEMESTER = ? AND YEAR = ? AND CREDITS = ?)""" , (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8])))
                 query_result = cursor.fetchall()
                 if(len(query_result) != 0):
                     print(query_result)
