@@ -25,20 +25,39 @@ class user:
         sql_command = """SELECT * FROM COURSE"""
         return(sql_command)
     def search_by_parameters(self):
-        print("Enter a value to show course.")
-        crn = str(input("Enter an id: "))
-        title = str(input("Enter title: "))
-        depart = str(input("Enter department: "))
-        time = str(input("Enter what time of day the class is: "))
-        days = str(input("Enter what days the class is: "))
-        semester = str(input("Enter semester of class: "))
-        year = input("Enter year of class: ")
-        credits = input("Enter credits of class: ")
-        if year.isnumeric() and credits.isnumeric():
-            year = int(year)
-            credits = int(credits)
-        else:
-            year = 0
-            credits = 0
-        return(crn, title, depart, time, days, semester, year, credits)
+        print("What would you like to search for? (CRN TITLE DEPARTMENT TIME DAYS SEMESTER YEAR CREDITS)")
+        reply = input("")
+        if (reply == "CRN") :
+            answer = str(input("Enter an id: "))
+            return(1, answer)
+        elif (reply == "TITLE") :
+            answer = str(input("Enter title: "))
+            return(2, answer)
+        elif (reply == "DEPARTMENT") :
+            depart = str(input("Enter department: "))
+            return (3, depart)
+        elif (reply == "TIME") :
+            time = str(input("Enter what time of day the class is: "))
+            return (4, time)
+        elif (reply == "DAYS") :
+            days = str(input("Enter what days the class is: "))
+            return (5, days)
+        elif (reply == "SEMESTER") :
+            semester = str(input("Enter semester of class: "))
+            return (6, semester)
+        elif (reply == "YEAR") :
+            year = input("Enter year of class: ")
+            if year.isnumeric():
+                year = int(year)
+            else:
+                year = 0
+            return (7, year)
+        elif (reply == "CREDITS") :
+            credits = input("Enter credits of class: ")
+            if  credits.isnumeric():
+                credits = int(credits)
+            else:
+                credits = 0
+            return (8, credits)
+
 cursor.close()

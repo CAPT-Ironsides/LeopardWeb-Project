@@ -153,7 +153,23 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
                 print(student_user.print_schedule(id))
             elif(action_choice == 5):
                 parameters = student_user.search_by_parameters()
-                print(cursor.execute("""SELECT * FROM COURSE WHERE (CRN = ? AND TITLE = ? AND DEPARTMENT = ? AND TIME = ? AND DAYS = ? AND SEMESTER = ? AND YEAR = ? AND CREDITS = ?)""" , (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7])))
+                #print(cursor.execute("""SELECT * FROM COURSE WHERE (CRN = ? AND TITLE = ? AND DEPARTMENT = ? AND TIME = ? AND DAYS = ? AND SEMESTER = ? AND YEAR = ? AND CREDITS = ?)""" , (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7])))
+                if parameters[0] == 1 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE CRN = ?; """ , (parameters[1],)))
+                elif parameters[0] == 2 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE TITLE = ?; """ , (parameters[1],)))
+                elif parameters[0] == 3 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE DEPARTMENT = ?; """ , (parameters[1],)))
+                elif parameters[0] == 4 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE TIME = ?; """ , (parameters[1],)))
+                elif parameters[0] == 5 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE DAYS = ?; """ , (parameters[1],)))
+                elif parameters[0] == 6 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE SEMESTER = ?; """ , (parameters[1],)))
+                elif parameters[0] == 7 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE YEAR = ?; """ , (parameters[1],)))
+                elif parameters[0] == 8 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE CREDITS = ?; """ , (parameters[1],)))
                 query_result = cursor.fetchall()
                 if(len(query_result) != 0):
                     print(query_result)
@@ -181,7 +197,22 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
                 print(query_result)
             elif(action_choice == 6):
                 parameters = instructor_user.search_by_parameters()
-                print(cursor.execute("""SELECT * FROM COURSE WHERE (CRN = ? AND TITLE = ? AND DEPARTMENT = ? AND TIME = ? AND DAYS = ? AND SEMESTER = ? AND YEAR = ? AND CREDITS = ?)""" , (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7])))
+                if parameters[0] == 1 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE CRN = ?; """ , (parameters[1],)))
+                elif parameters[0] == 2 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE TITLE = ?; """ , (parameters[1],)))
+                elif parameters[0] == 3 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE DEPARTMENT = ?; """ , (parameters[1],)))
+                elif parameters[0] == 4 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE TIME = ?; """ , (parameters[1],)))
+                elif parameters[0] == 5 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE DAYS = ?; """ , (parameters[1],)))
+                elif parameters[0] == 6 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE SEMESTER = ?; """ , (parameters[1],)))
+                elif parameters[0] == 7 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE YEAR = ?; """ , (parameters[1],)))
+                elif parameters[0] == 8 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE CREDITS = ?; """ , (parameters[1],)))
                 query_result = cursor.fetchall()
                 if(len(query_result) != 0):
                     print(query_result)
@@ -240,7 +271,22 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
                 print(query_result)
             elif(action_choice == 10):
                 parameters = admin_user.search_by_parameters()
-                print(cursor.execute("""SELECT * FROM COURSE WHERE (CRN = ? AND TITLE = ? AND DEPARTMENT = ? AND TIME = ? AND DAYS = ? AND SEMESTER = ? AND YEAR = ? AND CREDITS = ?)""" , (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8])))
+                if parameters[0] == 1 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE CRN = ?; """ , (parameters[1],)))
+                elif parameters[0] == 2 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE TITLE = ?; """ , (parameters[1],)))
+                elif parameters[0] == 3 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE DEPARTMENT = ?; """ , (parameters[1],)))
+                elif parameters[0] == 4 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE TIME = ?; """ , (parameters[1],)))
+                elif parameters[0] == 5 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE DAYS = ?; """ , (parameters[1],)))
+                elif parameters[0] == 6 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE SEMESTER = ?; """ , (parameters[1],)))
+                elif parameters[0] == 7 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE YEAR = ?; """ , (parameters[1],)))
+                elif parameters[0] == 8 :
+                    print(cursor.execute("""SELECT * FROM COURSE WHERE CREDITS = ?; """ , (parameters[1],)))
                 query_result = cursor.fetchall()
                 if(len(query_result) != 0):
                     print(query_result)
