@@ -25,7 +25,7 @@ class user:
         sql_command = """SELECT * FROM COURSE"""
         return(sql_command)
     def search_by_parameters(self):
-        print("What would you like to search for? (CRN TITLE DEPARTMENT TIME DAYS SEMESTER YEAR CREDITS)")
+        print("What would you like to search for? (CRN, TITLE, DEPARTMENT, TIME, DAYS, SEMESTER, YEAR, CREDITS)")
         reply = input("")
         if (reply == "CRN") :
             answer = str(input("Enter an id: "))
@@ -59,5 +59,7 @@ class user:
             else:
                 credits = 0
             return (8, credits)
+        else:
+            return (0, 0)
 
 cursor.close()

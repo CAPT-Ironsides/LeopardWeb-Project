@@ -9,8 +9,7 @@ from admin import admin
 database = sqlite3.connect("data.db")
 cursor = database.cursor()
 parameters = []
-course_list = []
-roster = []
+unlink = []
 
 # Creating tables
 #cursor.execute("""DROP TABLE IF EXISTS STUDENT_COURSE""")
@@ -170,6 +169,8 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
                     print(cursor.execute("""SELECT * FROM COURSE WHERE YEAR = ?; """ , (parameters[1],)))
                 elif parameters[0] == 8 :
                     print(cursor.execute("""SELECT * FROM COURSE WHERE CREDITS = ?; """ , (parameters[1],)))
+                else:
+                    print("That was not a valid option. Please try again.")
                 query_result = cursor.fetchall()
                 if(len(query_result) != 0):
                     print(query_result)
@@ -197,6 +198,7 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
                 print(query_result)
             elif(action_choice == 6):
                 parameters = instructor_user.search_by_parameters()
+                #print(cursor.execute("""SELECT * FROM COURSE WHERE (CRN = ? AND TITLE = ? AND DEPARTMENT = ? AND TIME = ? AND DAYS = ? AND SEMESTER = ? AND YEAR = ? AND CREDITS = ?)""" , (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7])))
                 if parameters[0] == 1 :
                     print(cursor.execute("""SELECT * FROM COURSE WHERE CRN = ?; """ , (parameters[1],)))
                 elif parameters[0] == 2 :
@@ -213,6 +215,8 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
                     print(cursor.execute("""SELECT * FROM COURSE WHERE YEAR = ?; """ , (parameters[1],)))
                 elif parameters[0] == 8 :
                     print(cursor.execute("""SELECT * FROM COURSE WHERE CREDITS = ?; """ , (parameters[1],)))
+                else:
+                    print("That was not a valid option. Please try again.")
                 query_result = cursor.fetchall()
                 if(len(query_result) != 0):
                     print(query_result)
@@ -225,7 +229,7 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
         elif(user_choice == 3):
             admin_user = admin(first, last, id)
             print("Welcome, " + admin_user.show_first() + " " + admin_user.show_last() + "!")
-            action_choice = int(input("Choose an option:\n1. Add course\n2. Remove course\n3. Add admin\n4. Remove admin\n5. Add student\n6. Remove student\n7. Add instructor\n8. Remove instructor\n9. Search courses\n10. Search courses by parameter\n0. Exit\n"))
+            action_choice = int(input("Choose an option:\n1. Add course\n2. Remove course\n3. Add admin\n4. Remove admin\n5. Add student\n6. Remove student\n7. Add instructor\n8. Remove instructor\n9. Unlink student\n10. Unlink instructor\n11. Search courses\n12. Search courses by parameter\n0. Exit\n"))
             if(action_choice == 1):
                 parameters = admin_user.add_course()
                 cursor.execute("""INSERT INTO COURSE VALUES(?, ?, ?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]))
@@ -266,11 +270,20 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
                 print("\nInstructor successfully added\n")
                 database.commit()
             elif(action_choice == 9):
+                unlink = admin_user.unlink_student()
+                cursor.execute("""DELETE FROM STUDENT_COURSE WHERE STUDENT_ID = ? AND COURSE_CRN = ?;""", (unlink[0], unlink[1]))
+                print("\nStudent successfully unlinked\n")
+            elif(action_choice == 10):
+                unlink = admin_user.unlink_instructor()
+                cursor.execute("""DELETE FROM INSTRUCTOR_COURSE WHERE INSTRUCTOR_ID = ? AND COURSE_CRN = ?;""", (unlink[0], unlink[1]))
+                print("\nInstructor successfully unlinked\n")
+            elif(action_choice == 11):
                 cursor.execute(admin_user.search_courses())
                 query_result = cursor.fetchall()
                 print(query_result)
-            elif(action_choice == 10):
+            elif(action_choice == 12):
                 parameters = admin_user.search_by_parameters()
+                #print(cursor.execute("""SELECT * FROM COURSE WHERE (CRN = ? AND TITLE = ? AND DEPARTMENT = ? AND TIME = ? AND DAYS = ? AND SEMESTER = ? AND YEAR = ? AND CREDITS = ?)""" , (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8])))
                 if parameters[0] == 1 :
                     print(cursor.execute("""SELECT * FROM COURSE WHERE CRN = ?; """ , (parameters[1],)))
                 elif parameters[0] == 2 :
@@ -287,6 +300,8 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
                     print(cursor.execute("""SELECT * FROM COURSE WHERE YEAR = ?; """ , (parameters[1],)))
                 elif parameters[0] == 8 :
                     print(cursor.execute("""SELECT * FROM COURSE WHERE CREDITS = ?; """ , (parameters[1],)))
+                else:
+                    print("That was not a valid option. Please try again.")
                 query_result = cursor.fetchall()
                 if(len(query_result) != 0):
                     print(query_result)

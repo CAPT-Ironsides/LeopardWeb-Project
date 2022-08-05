@@ -87,3 +87,13 @@ class admin(user):
       return(id)
       #sql_command = """DELETE FROM INSTRUCTOR WHERE ID = ?;""", (id)
       #c.execute(sql_command) 
+
+    def unlink_student(self):
+      id = str(input("Enter a student's W# without the W: "))
+      crn = str(input("Enter a CRN to unlink student: "))
+      return(id, crn)
+
+    def unlink_instructor(self):
+      id = str(input("Enter an instructor's W# without the W: "))
+      crn = str(input("Enter a CRN to unlink instructor: "))
+      return(id, crn)
