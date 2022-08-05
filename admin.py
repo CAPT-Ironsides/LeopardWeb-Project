@@ -20,12 +20,13 @@ class admin(user):
       crn = str(input("Enter an id: "))
       title = str(input("Enter title: "))
       depart = str(input("Enter department: "))
-      time = str(input("Enter what time of day the class is: "))
-      days = str(input("Enter what days the class is: "))
-      semester = str(input("Enter semester of class: "))
+      start_time = str(input("Enter what time of day the start of the class is: "))
+      end_time = str(input("Enter what time of day the end of the class is: "))
+      days = str(input("Enter what days the class is (ex: 8:00 AM): "))
+      semester = str(input("Enter semester of class (ex: 12:00 PM): "))
       year = int(input("Enter year of class: "))
       credits = int(input("Enter credits of class: "))
-      return(crn, title, depart, time, days, semester, year, credits)
+      return(crn, title, depart, start_time, end_time, days, semester, year, credits)
 
     def remove_course(self):
       crn = str(input("Enter a crn to delete: "))

@@ -12,7 +12,7 @@ parameters = []
 unlink = []
 
 # Creating tables
-#cursor.execute("""DROP TABLE IF EXISTS STUDENT_COURSE""")
+#cursor.execute("""DROP TABLE IF EXISTS COURSE""")
 sql_command = """CREATE TABLE IF NOT EXISTS STUDENT (
     ID TEXT PRIMARY KEY NOT NULL,
     FIRST TEXT NOT NULL,
@@ -45,7 +45,8 @@ sql_command = """CREATE TABLE IF NOT EXISTS COURSE (
     CRN TEXT PRIMARY KEY NOT NULL,
     TITLE TEXT NOT NULL,
     DEPARTMENT TEXT NOT NULL,
-    TIME TEXT NOT NULL,
+    START_TIME TEXT NOT NULL,
+    END_TIME TEXT NOT NULL,
     DAYS TEXT NOT NULL,
     SEMESTER TEXT NOT NULL,
     YEAR INT NOT NULL,
@@ -232,7 +233,7 @@ if(first == result_first) and (last == result_last) and (id == result_id) and (p
             action_choice = int(input("Choose an option:\n1. Add course\n2. Remove course\n3. Add admin\n4. Remove admin\n5. Add student\n6. Remove student\n7. Add instructor\n8. Remove instructor\n9. Unlink student\n10. Unlink instructor\n11. Search courses\n12. Search courses by parameter\n0. Exit\n"))
             if(action_choice == 1):
                 parameters = admin_user.add_course()
-                cursor.execute("""INSERT INTO COURSE VALUES(?, ?, ?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]))
+                cursor.execute("""INSERT INTO COURSE VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);""", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8]))
                 print("\nCourse successfully added\n")
             elif(action_choice == 2):
                 crn = admin_user.remove_course()
