@@ -6,7 +6,7 @@ class StudentTest(unittest.TestCase):
     def test_add_course(self):
         print("Add Courses Test called...")
         # Arrange
-        self.crn = "000000"                                                                  # CRN of a course that must be in the table
+        self.crn = "0000"                                                                  # CRN of a course that must be in the table
         # Act
         result = test_student_class.test_add_courses(test_student_class, self.crn)           # Executes test_student_class 
         # Assert
